@@ -7,4 +7,4 @@ the community, but it does come with some risks.
 ## Reporting a Vulnerability
 
 Privately discuss, fix, and publish information about security vulnerabilities in this repository by drafting a new
-[security advisory](https://github.com/osinfra-io/terraform-kubernetes-opa-gatekeeper/security/advisories/new).
+[security advisory](https://github.com/osinfra-io/terraform-kubernetes-cert-manager/security/advisories/new).
