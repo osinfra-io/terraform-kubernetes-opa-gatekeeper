@@ -1,4 +1,4 @@
-# <img align="left" width="45" height="45" src="https://github.com/user-attachments/assets/62b967f2-b2eb-4309-991b-e25e08bf2b0d"> Kubernetes - Open Policy Agent Gatekeeper Terraform Module
+# <img align="left" width="45" height="45" src="https://github.com/user-attachments/assets/9e7982fb-5f76-4e95-a4f2-f6bf4b458693"> Kubernetes - Open Policy Agent Gatekeeper Terraform Module
 
 **[GitHub Actions](https://github.com/osinfra-io/terraform-kubernetes-opa-gatekeeper/actions):**
 
