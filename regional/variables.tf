@@ -8,7 +8,7 @@ variable "artifact_registry" {
 }
 
 variable "chart_repository" {
-  description = "The repository to pull the cert-manager Helm chart from"
+  description = "The repository to pull the Helm chart from"
   type        = string
   default     = "https://open-policy-agent.github.io/gatekeeper/charts"
 }
