@@ -17,10 +17,10 @@ resource "helm_release" "gatekeeper" {
     value = var.gatekeeper_version
   }
 
-  set {
-    name  = "podLabels.tags\\.datadoghq\\.com/service"
-    value = "gatekeeper"
-  }
+  # set {
+  #   name  = "podLabels.tags\\.datadoghq\\.com/service"
+  #   value = "gatekeeper"
+  # }
 
   values = [
     file("${path.module}/helm/gatekeeper.yml")
