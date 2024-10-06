@@ -37,10 +37,9 @@ audit:
       memory: 32Mi
 
 validatingWebhookAnnotations:
-  cert-manager.io/inject-ca-from: gatekeeper-system/opa-gatekeeper-tls
+  cert-manager.io/inject-ca-from: gatekeeper-system/gatekeeper-webhook-server-cert
 mutatingWebhookAnnotations:
-  cert-manager.io/inject-ca-from: gatekeeper-system/opa-gatekeeper-tls
+  cert-manager.io/inject-ca-from: gatekeeper-system/gatekeeper-webhook-server-cert
 
 externalCertInjection:
   enabled: true
-  secretName: opa-gatekeeper-tls
