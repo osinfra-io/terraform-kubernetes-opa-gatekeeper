@@ -17,6 +17,8 @@ postInstall:
 controllerManager:
   disableCertRotation: true
   podLabels: {}
+  readinessTimeout: 10
+  livenessTimeout: 10
   resources:
     limits:
       cpu: 20m
