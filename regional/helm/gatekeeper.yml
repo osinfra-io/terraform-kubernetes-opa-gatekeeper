@@ -43,3 +43,4 @@ mutatingWebhookAnnotations:
 
 externalCertInjection:
   enabled: true
+  secretName: opa-gatekeeper-tls
