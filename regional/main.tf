@@ -2,7 +2,7 @@
 # https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release
 
 resource "helm_release" "gatekeeper" {
-  chart      = "gatekeeper/gatekeeper"
+  chart      = "gatekeeper"
   name       = "gatekeeper"
   namespace  = "gatekeeper-system"
   repository = var.chart_repository
