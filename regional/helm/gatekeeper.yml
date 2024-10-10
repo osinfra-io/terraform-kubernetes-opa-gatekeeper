@@ -16,20 +16,15 @@ postInstall:
     image:
       repository: openpolicyagent/gatekeeper-crds
       tag: v3.17.1
-  probeWebhook:
-    waitTimeout: 60
-    httpTimeout: 20
 
 controllerManager:
   disableCertRotation: true
   podLabels:
     tags.datadoghq.com/service: gatekeeper-controller-manager
-  readinessTimeout: 60
-  livenessTimeout: 60
   resources:
     limits:
-      cpu: 1000m
-      memory: 512Mi
+      cpu: 50m
+      memory: 128Mi
     requests:
       cpu: 10m
       memory: 32Mi
@@ -40,8 +35,8 @@ audit:
     tags.datadoghq.com/service: gatekeeper-audit
   resources:
     limits:
-      cpu: 1000m
-      memory: 512Mi
+      cpu: 25m
+      memory: 64Mi
     requests:
       cpu: 10m
       memory: 32Mi
