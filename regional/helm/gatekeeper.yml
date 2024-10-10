@@ -8,6 +8,9 @@ preInstall:
     image:
       tag: v3.17.1
 
+podLabels:
+  tags.datadoghq.com/service: gatekeeper
+
 postInstall:
   labelNamespace:
     image:
@@ -16,9 +19,10 @@ postInstall:
 
 controllerManager:
   disableCertRotation: true
-  podLabels: {}
-  readinessTimeout: 10
-  livenessTimeout: 10
+  podLabels:
+    tags.datadoghq.com/service: gatekeeper-controller-manager
+  readinessTimeout: 60
+  livenessTimeout: 60
   resources:
     limits:
       cpu: 20m
@@ -29,7 +33,8 @@ controllerManager:
 
 audit:
   disableCertRotation: true
-  podLabels: {}
+  podLabels:
+    tags.datadoghq.com/service: gatekeeper-audit
   resources:
     limits:
       cpu: 20m
