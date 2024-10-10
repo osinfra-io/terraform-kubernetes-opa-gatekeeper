@@ -1,45 +1,15 @@
-replicas: 1
-image:
-  repository: openpolicyagent/gatekeeper
-  release: v3.17.1
-
-preInstall:
-  crdRepository:
-    image:
-      tag: v3.17.1
-
 podLabels:
   tags.datadoghq.com/service: gatekeeper
-
-postInstall:
-  labelNamespace:
-    image:
-      repository: openpolicyagent/gatekeeper-crds
-      tag: v3.17.1
 
 controllerManager:
   disableCertRotation: true
   podLabels:
     tags.datadoghq.com/service: gatekeeper-controller-manager
-  resources:
-    limits:
-      cpu: 100m
-      memory: 256Mi
-    requests:
-      cpu: 10m
-      memory: 32Mi
 
 audit:
   disableCertRotation: true
   podLabels:
     tags.datadoghq.com/service: gatekeeper-audit
-  resources:
-    limits:
-      cpu: 20m
-      memory: 64Mi
-    requests:
-      cpu: 10m
-      memory: 32Mi
 
 validatingWebhookAnnotations:
   cert-manager.io/inject-ca-from: gatekeeper-system/gatekeeper-webhook-server-cert
