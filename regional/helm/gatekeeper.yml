@@ -16,6 +16,9 @@ postInstall:
     image:
       repository: openpolicyagent/gatekeeper-crds
       tag: v3.17.1
+  probeWebhook:
+    waitTimeout: 60
+    httpTimeout: 20
 
 controllerManager:
   disableCertRotation: true
