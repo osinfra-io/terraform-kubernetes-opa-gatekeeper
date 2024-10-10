@@ -28,8 +28,8 @@ controllerManager:
   livenessTimeout: 60
   resources:
     limits:
-      cpu: 20m
-      memory: 64Mi
+      cpu: 1000m
+      memory: 512Mi
     requests:
       cpu: 10m
       memory: 32Mi
@@ -40,8 +40,8 @@ audit:
     tags.datadoghq.com/service: gatekeeper-audit
   resources:
     limits:
-      cpu: 20m
-      memory: 64Mi
+      cpu: 1000m
+      memory: 512Mi
     requests:
       cpu: 10m
       memory: 32Mi
