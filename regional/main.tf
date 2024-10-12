@@ -7,89 +7,12 @@ resource "helm_release" "gatekeeper" {
   namespace  = "gatekeeper-system"
   repository = var.chart_repository
 
-  set {
-    name  = "audit.resources.limits.cpu"
-    value = var.audit_resources_limits_cpu
-  }
-
-  set {
-    name  = "audit.resources.limits.memory"
-    value = var.audit_resources_limits_memory
-  }
-
-  set {
-    name  = "audit.resources.requests.cpu"
-    value = var.audit_resources_requests_cpu
-  }
-
-  set {
-    name  = "audit.resources.requests.memory"
-    value = var.audit_resources_requests_memory
-  }
-
-  set {
-    name  = "controllerManager.resources.limits.cpu"
-    value = var.controller_manager_resources_limits_cpu
-  }
-
-  set {
-    name  = "controllerManager.resources.limits.memory"
-    value = var.controller_manager_resources_limits_memory
-  }
-
-  set {
-    name  = "controllerManager.resources.requests.cpu"
-    value = var.controller_manager_resources_requests_cpu
-  }
-
-  set {
-    name  = "controllerManager.resources.requests.memory"
-    value = var.controller_manager_resources_requests_memory
-  }
-
-  set {
-    name  = "image.crdRepository"
-    value = "${var.artifact_registry}/openpolicyagent/gatekeeper-crds"
-  }
-
-  set {
-    name  = "image.repository"
-    value = "${var.artifact_registry}/openpolicyagent/gatekeeper"
-  }
-
-  set {
-    name  = "image.release"
-    value = var.gatekeeper_version
-  }
-
-  set {
-    name  = "podLabels.tags\\.datadoghq\\.com/env"
-    value = var.environment
-  }
-
-  set {
-    name  = "podLabels.tags\\.datadoghq\\.com/version"
-    value = var.gatekeeper_version
-  }
-
-  set {
-    name  = "postInstall.labelNamespace.image.repository"
-    value = "${var.artifact_registry}/openpolicyagent/gatekeeper-crds"
-  }
-
-  set {
-    name  = "postInstall.labelNamespace.image.tag"
-    value = var.gatekeeper_version
-  }
-
-  set {
-    name  = "preInstall.crdRepository.image.tag"
-    value = var.gatekeeper_version
-  }
-
-  set {
-    name  = "replicas"
-    value = var.replicas
+  dynamic "set" {
+    for_each = local.helm_values
+    content {
+      name  = set.key
+      value = set.value
+    }
   }
 
   values = [
