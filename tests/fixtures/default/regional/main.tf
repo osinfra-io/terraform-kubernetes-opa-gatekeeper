@@ -64,6 +64,4 @@ module "test" {
   source = "../../../../regional"
 
   artifact_registry = "mock-docker.pkg.dev/mock-project/mock-virtual"
-  environment       = var.environment
-  region            = var.region
 }

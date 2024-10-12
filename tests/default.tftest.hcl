@@ -15,10 +15,6 @@ run "default_regional" {
   module {
     source = "./tests/fixtures/default/regional"
   }
-
-  variables {
-    region                      = "mock-region-a"
-  }
 }
 
 run "default_regional_manifests" {
@@ -27,8 +23,4 @@ run "default_regional_manifests" {
   module {
     source = "./tests/fixtures/default/regional/manifests"
   }
-}
-
-variables {
-  environment = "mock-environment"
 }

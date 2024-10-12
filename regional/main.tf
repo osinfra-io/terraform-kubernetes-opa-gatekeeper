@@ -20,6 +20,10 @@ resource "helm_release" "gatekeeper" {
   ]
 
   version = var.gatekeeper_version
+
+  depends_on = [
+    kubernetes_manifest.opa_gatekeeper_selfsigned_issuer
+  ]
 }
 
 # Kubernetes Manifest Resource
@@ -45,7 +49,7 @@ resource "kubernetes_manifest" "opa_gatekeeper_ca_certificate" {
       isCA       = true
 
       issuerRef = {
-        name  = "selfsigned"
+        name  = kubernetes_manifest.opa_gatekeeper_selfsigned_issuer.manifest.metadata.name
         kind  = "Issuer"
         group = "cert-manager.io"
       }
@@ -75,7 +79,7 @@ resource "kubernetes_manifest" "opa_gatekeeper_ca_issuer" {
 
     spec = {
       ca = {
-        secretName = "gatekeeper-ca"
+        secretName = kubernetes_manifest.opa_gatekeeper_ca_certificate.manifest.metadata.name
       }
     }
   }
@@ -128,7 +132,7 @@ resource "kubernetes_manifest" "opa_gatekeeper_server_cert" {
       isCA     = false
 
       issuerRef = {
-        name  = "gatekeeper-ca"
+        name  = kubernetes_manifest.opa_gatekeeper_ca_issuer.manifest.metadata.name
         kind  = "Issuer"
         group = "cert-manager.io"
       }
@@ -137,9 +141,6 @@ resource "kubernetes_manifest" "opa_gatekeeper_server_cert" {
       secretName  = "gatekeeper-webhook-server-cert"
 
       usages = [
-        "client auth",
-        #"digital signature",
-        #"key encipherment",
         "server auth"
       ]
     }
