@@ -2,7 +2,13 @@
 # https://www.terraform.io/docs/language/values/locals.html
 
 locals {
-  env = lookup(local.env_map, var.environment, "none")
+  env = lookup(local.env_map, local.environment, "none")
+
+  environment = (
+    terraform.workspace == "default" ?
+    "mock-environment" :
+    (regex(".*-(?P<environment>[^-]+)$", terraform.workspace)["environment"])
+  )
 
   env_map = {
     "non-production" = "nonprod"
@@ -22,7 +28,7 @@ locals {
     "image.crdRepository"                         = "${var.artifact_registry}/openpolicyagent/gatekeeper-crds"
     "image.repository"                            = "${var.artifact_registry}/openpolicyagent/gatekeeper"
     "image.release"                               = var.gatekeeper_version
-    "podLabels.tags\\.datadoghq\\.com/env"        = var.environment
+    "podLabels.tags\\.datadoghq\\.com/env"        = local.environment
     "podLabels.tags\\.datadoghq\\.com/version"    = var.gatekeeper_version
     "postInstall.labelNamespace.image.repository" = "${var.artifact_registry}/openpolicyagent/gatekeeper-crds"
     "postInstall.labelNamespace.image.tag"        = var.gatekeeper_version

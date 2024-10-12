@@ -61,17 +61,6 @@ variable "controller_manager_resources_requests_memory" {
   default     = "32Mi"
 }
 
-variable "environment" {
-  description = "The environment must be one of `sandbox`, `non-production`, `production`"
-  type        = string
-  default     = "sandbox"
-
-  validation {
-    condition     = contains(["mock-environment", "sandbox", "non-production", "production"], var.environment)
-    error_message = "The environment must be one of `mock-environment` for tests or `sandbox`, `non-production`, or `production`."
-  }
-}
-
 variable "gatekeeper_version" {
   description = "The version to install, this is used for the chart as well as the image tag"
   type        = string
@@ -82,11 +71,6 @@ variable "node_location" {
   description = "The zone in which the cluster's nodes should be located. If not specified, the cluster's nodes are located across zones in the region"
   type        = string
   default     = null
-}
-
-variable "region" {
-  description = "The region in which the resource belongs"
-  type        = string
 }
 
 variable "replicas" {
