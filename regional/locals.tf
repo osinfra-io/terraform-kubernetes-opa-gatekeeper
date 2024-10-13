@@ -7,7 +7,7 @@ locals {
   environment = (
     terraform.workspace == "default" ?
     "mock-environment" :
-    (regex(".*-(?P<environment>[^-]+)$", terraform.workspace)["environment"])
+    regex(".*-(?P<environment>[^-]+)$", terraform.workspace)["environment"]
   )
 
   env_map = {
