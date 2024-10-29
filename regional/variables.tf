@@ -67,6 +67,31 @@ variable "gatekeeper_version" {
   default     = "v3.17.1"
 }
 
+variable "helpers_cost_center" {
+  description = "The cost center the resources will be billed to, must start with 'x' followed by three or four digits"
+  type        = string
+}
+
+variable "helpers_data_classification" {
+  description = "The data classification of the resources can be public, internal, or confidential"
+  type        = string
+}
+
+variable "helpers_email" {
+  description = "The email address of the team responsible for the resources"
+  type        = string
+}
+
+variable "helpers_repository" {
+  description = "The repository name (should be in the format 'owner/repo' containing only lowercase alphanumeric characters or hyphens)"
+  type        = string
+}
+
+variable "helpers_team" {
+  description = "The team name (should contain only lowercase alphanumeric characters and hyphens)"
+  type        = string
+}
+
 variable "node_location" {
   description = "The zone in which the cluster's nodes should be located. If not specified, the cluster's nodes are located across zones in the region"
   type        = string

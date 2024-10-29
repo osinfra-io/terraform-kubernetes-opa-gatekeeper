@@ -47,19 +47,3 @@ provider "kubernetes" {
 
 data "google_client_config" "current" {
 }
-
-# Remote State Data Source
-# https://www.terraform.io/language/state/remote-state-data
-
-data "terraform_remote_state" "regional" {
-  backend   = "gcs"
-  workspace = "mock-workspace"
-
-  config = {
-    bucket = "mock-bucket"
-  }
-}
-
-module "test" {
-  source = "../../../../../regional/manifests"
-}
