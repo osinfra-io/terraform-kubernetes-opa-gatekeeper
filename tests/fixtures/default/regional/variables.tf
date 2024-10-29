@@ -20,7 +20,3 @@ variable "helpers_repository" {
 variable "helpers_team" {
   type = string
 }
-
-variable "project" {
-  type = string
-}

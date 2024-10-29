@@ -14,36 +14,3 @@ terraform {
     }
   }
 }
-
-# Helm Provider
-# https://registry.terraform.io/providers/hashicorp/helm/latest
-
-provider "helm" {
-  kubernetes {
-
-    cluster_ca_certificate = base64decode(
-      local.regional.cluster_ca_certificate
-    )
-
-    host  = local.regional.cluster_endpoint
-    token = data.google_client_config.current.access_token
-  }
-}
-
-# Kubernetes Provider
-# https://registry.terraform.io/providers/hashicorp/kubernetes/latest
-
-provider "kubernetes" {
-  cluster_ca_certificate = base64decode(
-    local.regional.cluster_ca_certificate
-  )
-
-  host  = "https://${local.regional.cluster_endpoint}"
-  token = data.google_client_config.current.access_token
-}
-
-# Google Client Config Data Source
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/client_config
-
-data "google_client_config" "current" {
-}
