@@ -61,6 +61,16 @@ variable "controller_manager_resources_requests_memory" {
   default     = "32Mi"
 }
 
+variable "environment" {
+  description = "The environment for example: `sandbox`, `non-production`, `production`"
+  type        = string
+
+  validation {
+    condition     = contains(["sandbox", "non-production", "production"], var.environment)
+    error_message = "Environment must be one of: sandbox, non-production, production."
+  }
+}
+
 variable "gatekeeper_version" {
   description = "The version to install, this is used for the chart as well as the image tag"
   type        = string

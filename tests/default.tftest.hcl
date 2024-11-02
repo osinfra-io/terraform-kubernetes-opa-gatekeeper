@@ -24,3 +24,7 @@ run "default_regional_manifests" {
     source = "./tests/fixtures/default/regional/manifests"
   }
 }
+
+variables {
+  environment = "sandbox"
+}
