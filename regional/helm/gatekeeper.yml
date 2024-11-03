@@ -1,20 +1,21 @@
-podLabels:
-  tags.datadoghq.com/service: gatekeeper
+audit:
+  disableCertRotation: true
+  podLabels:
+    tags.datadoghq.com/service: gatekeeper-audit
 
 controllerManager:
   disableCertRotation: true
   podLabels:
     tags.datadoghq.com/service: gatekeeper-controller-manager
 
-audit:
-  disableCertRotation: true
-  podLabels:
-    tags.datadoghq.com/service: gatekeeper-audit
+externalCertInjection:
+  enabled: true
 
-validatingWebhookAnnotations:
-  cert-manager.io/inject-ca-from: gatekeeper-system/gatekeeper-webhook-server-cert
+podLabels:
+  tags.datadoghq.com/service: gatekeeper
+
 mutatingWebhookAnnotations:
   cert-manager.io/inject-ca-from: gatekeeper-system/gatekeeper-webhook-server-cert
 
-externalCertInjection:
-  enabled: true
+validatingWebhookAnnotations:
+  cert-manager.io/inject-ca-from: gatekeeper-system/gatekeeper-webhook-server-cert

@@ -2,20 +2,6 @@
 # https://www.terraform.io/docs/language/values/locals.html
 
 locals {
-  env = lookup(local.env_map, local.environment, "none")
-
-  environment = (
-    terraform.workspace == "default" ?
-    "mock-environment" :
-    regex(".*-(?P<environment>[^-]+)$", terraform.workspace)["environment"]
-  )
-
-  env_map = {
-    "non-production" = "nonprod"
-    "production"     = "prod"
-    "sandbox"        = "sb"
-  }
-
   helm_values = {
     "audit.resources.limits.cpu"                  = var.audit_resources_limits_cpu
     "audit.resources.limits.memory"               = var.audit_resources_limits_memory
