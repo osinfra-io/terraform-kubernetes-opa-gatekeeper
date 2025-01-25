@@ -44,7 +44,7 @@ No requirements.
 | <a name="input_controller_manager_resources_limits_memory"></a> [controller\_manager\_resources\_limits\_memory](#input\_controller\_manager\_resources\_limits\_memory) | The memory limit for the controller manager container | `string` | `"256Mi"` | no |
 | <a name="input_controller_manager_resources_requests_cpu"></a> [controller\_manager\_resources\_requests\_cpu](#input\_controller\_manager\_resources\_requests\_cpu) | The CPU request for the controller manager container | `string` | `"10m"` | no |
 | <a name="input_controller_manager_resources_requests_memory"></a> [controller\_manager\_resources\_requests\_memory](#input\_controller\_manager\_resources\_requests\_memory) | The memory request for the controller manager container | `string` | `"32Mi"` | no |
-| <a name="input_gatekeeper_version"></a> [gatekeeper\_version](#input\_gatekeeper\_version) | The version to install, this is used for the chart as well as the image tag | `string` | `"v3.18.1"` | no |
+| <a name="input_gatekeeper_version"></a> [gatekeeper\_version](#input\_gatekeeper\_version) | The version to install, this is used for the chart as well as the image tag | `string` | `"v3.18.2"` | no |
 | <a name="input_node_location"></a> [node\_location](#input\_node\_location) | The zone in which the cluster's nodes should be located. If not specified, the cluster's nodes are located across zones in the region | `string` | `null` | no |
 | <a name="input_replicas"></a> [replicas](#input\_replicas) | The number of replicas to run | `number` | `1` | no |
 
