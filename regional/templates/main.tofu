@@ -38,3 +38,41 @@ resource "kubernetes_manifest" "block_ingress_constraint_template" {
     }
   }
 }
+
+resource "kubernetes_manifest" "protect_gateway_auth_constraint_template" {
+  manifest = {
+    apiVersion = "templates.gatekeeper.sh/v1"
+    kind       = "ConstraintTemplate"
+
+    metadata = {
+      name = "k8sprotectgatewayauth"
+    }
+
+    spec = {
+      crd = {
+        spec = {
+          names = {
+            kind = "K8sProtectGatewayAuth"
+          }
+        }
+      }
+
+      targets = [
+        {
+          target = "admission.k8s.gatekeeper.sh"
+
+          code = [
+            {
+              engine = "Rego"
+
+              source = {
+                version = "v1"
+                rego    = file("${path.module}/k8sprotectgatewayauth/k8sprotectgatewayauth.rego")
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

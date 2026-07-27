@@ -26,3 +26,35 @@ resource "kubernetes_manifest" "block_ingress_constraint" {
     }
   }
 }
+
+resource "kubernetes_manifest" "protect_gateway_auth_constraint" {
+  manifest = {
+    apiVersion = "constraints.gatekeeper.sh/v1beta1"
+    kind       = "K8sProtectGatewayAuth"
+
+    metadata = {
+      name = "protect-gateway-auth"
+    }
+
+    spec = {
+      enforcementAction = "deny"
+
+      match = {
+        kinds = [
+          {
+            apiGroups = [""]
+            kinds     = ["Namespace", "Secret"]
+          },
+          {
+            apiGroups = ["networking.istio.io"]
+            kinds     = ["EnvoyFilter"]
+          },
+          {
+            apiGroups = ["security.istio.io"]
+            kinds     = ["AuthorizationPolicy", "RequestAuthentication"]
+          }
+        ]
+      }
+    }
+  }
+}
