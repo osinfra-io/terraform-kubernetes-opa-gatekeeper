@@ -13,7 +13,7 @@ protected_kinds := {
 }
 
 # Namespaces whose lifecycle and Secrets are platform-managed.
-protected_namespaces := {"keycloak", "oauth2-proxy"}
+protected_namespaces := {"authentik"}
 
 review_object := object.get(input.review, "object", object.get(input.review, "oldObject", {}))
 

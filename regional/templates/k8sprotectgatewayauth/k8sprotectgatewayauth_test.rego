@@ -22,19 +22,19 @@ test_platform_principal_allowed if {
 test_protected_namespace_denied if {
 	some result in k8sprotectgatewayauth.violation with input as {"review": {
 		"kind": {"group": "", "kind": "Namespace"},
-		"object": {"metadata": {"name": "keycloak"}},
+		"object": {"metadata": {"name": "authentik"}},
 		"userInfo": {"groups": ["system:authenticated"]},
 	}}
-	result.msg == "namespace \"keycloak\" is platform-managed and may only be changed by platform principals"
+	result.msg == "namespace \"authentik\" is platform-managed and may only be changed by platform principals"
 }
 
 test_protected_secret_denied if {
 	some result in k8sprotectgatewayauth.violation with input as {"review": {
 		"kind": {"group": "", "kind": "Secret"},
-		"object": {"metadata": {"name": "oidc", "namespace": "oauth2-proxy"}},
+		"object": {"metadata": {"name": "oidc", "namespace": "authentik"}},
 		"userInfo": {"groups": ["system:authenticated"]},
 	}}
-	result.msg == "secrets in platform-managed namespace \"oauth2-proxy\" may only be changed by platform principals"
+	result.msg == "secrets in platform-managed namespace \"authentik\" may only be changed by platform principals"
 }
 
 test_unprotected_kind_allowed if {
