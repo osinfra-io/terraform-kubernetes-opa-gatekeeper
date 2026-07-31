@@ -44,3 +44,12 @@ test_unprotected_kind_allowed if {
 		"userInfo": {"groups": ["system:authenticated"]},
 	}}
 }
+
+# Audit reviews have no userInfo, so identity cannot be evaluated; existing protected resources
+# must not be reported as violations.
+test_audit_review_without_user_info_allowed if {
+	count(k8sprotectgatewayauth.violation) == 0 with input as {"review": {
+		"kind": {"group": "security.istio.io", "kind": "AuthorizationPolicy"},
+		"object": {"metadata": {"name": "deny-all"}},
+	}}
+}

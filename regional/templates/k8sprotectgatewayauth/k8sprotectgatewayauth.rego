@@ -5,6 +5,13 @@ allowed_principal if {
 	"system:masters" in input.review.userInfo.groups
 }
 
+# Gatekeeper audit reviews carry no userInfo (there is no requesting actor), so the identity of the
+# change cannot be evaluated. Treat those reviews as allowed to avoid reporting every pre-existing
+# protected resource as a false-positive violation; admission requests always populate userInfo.
+allowed_principal if {
+	not input.review.userInfo
+}
+
 # Istio authn/authz resources that only platform principals may manage.
 protected_kinds := {
 	{"group": "networking.istio.io", "kind": "EnvoyFilter"},
